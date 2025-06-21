@@ -27,11 +27,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import dev.savila.pc2_dam_vila.auth.AuthViewModel
 import dev.savila.pc2_dam_vila.conversion.ConversionViewModel
 
 @Composable
 fun ConversionScreen() {
-    val viewModel: ConversionViewModel = viewModel()
+    val viewModel = ConversionViewModel()
     val context = LocalContext.current
     val currencies = listOf("USD", "EUR", "PEN", "GBP", "JPY")
 
@@ -40,10 +41,11 @@ fun ConversionScreen() {
     var toCurrency by remember { mutableStateOf(currencies[1]) }
     var resultText by remember { mutableStateOf<String?>(null) }
 
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .padding(24.dp)) {
-
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(24.dp)
+    ) {
         Text("Conversor de Divisas", style = MaterialTheme.typography.headlineMedium)
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -69,16 +71,19 @@ fun ConversionScreen() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Button(onClick = {
-            val amountDouble = amount.toDoubleOrNull()
-            if (amountDouble != null && fromCurrency != toCurrency) {
-                val result = viewModel.convert(amountDouble, fromCurrency, toCurrency)
-                resultText = "$amountDouble $fromCurrency equivalen a $result $toCurrency"
-                viewModel.saveConversion(amountDouble, fromCurrency, toCurrency, result)
-            } else {
-                Toast.makeText(context, "Verifica los campos", Toast.LENGTH_SHORT).show()
-            }
-        }, modifier = Modifier.fillMaxWidth()) {
+        Button(
+            onClick = {
+                val amountDouble = amount.toDoubleOrNull()
+                if (amountDouble != null && fromCurrency != toCurrency) {
+                    val result = viewModel.convert(amountDouble, fromCurrency, toCurrency)
+                    resultText = "$amountDouble $fromCurrency equivalen a $result $toCurrency"
+                    viewModel.saveConversion(amountDouble, fromCurrency, toCurrency, result)
+                } else {
+                    Toast.makeText(context, "Verifica los campos", Toast.LENGTH_SHORT).show()
+                }
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
             Text("Convertir")
         }
 
@@ -90,9 +95,8 @@ fun ConversionScreen() {
     }
 }
 
-fun viewModel(): ConversionViewModel {
-
-    return ConversionViewModel()
+fun viewModel(): AuthViewModel {
+    return AuthViewModel()
 }
 
 @Composable
