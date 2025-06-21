@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "928135460815",
+    "project_id": "conversormonedasappavilapc2",
+    "storage_bucket": "conversormonedasappavilapc2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928135460815:android:cb275710e566dbf96a44ba",
+        "android_client_info": {
+          "package_name": "dev.savila.pc2_dam_vila"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUP886K_uk58YWG39UZqYjAtAF_j5vics"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
